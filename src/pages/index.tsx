@@ -6,7 +6,7 @@ import { VscFeedback } from 'react-icons/vsc';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import MapSection from '@/components/home/MapSection';
 import { Store } from '@/types/store';
-import useStores from '@/hooks/useStore';
+import useStores from '@/hooks/useStores';
 
 interface Props {
   stores: Store[];

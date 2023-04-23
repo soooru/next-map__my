@@ -1,21 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 import Script from 'next/script';
-import { Coordinates } from '@/types/store';
-import { NaverMap } from '@/types/map';
-import { INITIAL_CENTER, INITIAL_ZOOM } from '@/hooks/useMap';
+import { Coordinates } from '../../types/store';
+import { NaverMap } from '../../types/map';
+import { INITIAL_CENTER, INITIAL_ZOOM } from '../../hooks/useMap';
 
 type Props = {
   mapId?: string;
   initialCenter?: Coordinates;
   initialZoom?: number;
-  onReady?: (map: NaverMap) => void;
+  onLoad?: (map: NaverMap) => void;
 };
 
 const Map = ({
   mapId = 'map',
   initialCenter = INITIAL_CENTER,
   initialZoom = INITIAL_ZOOM,
-  onReady,
+  onLoad,
 }: Props) => {
   const mapRef = useRef<NaverMap | null>(null);
 
@@ -35,8 +35,8 @@ const Map = ({
     const map = new window.naver.maps.Map(mapId, mapOptions);
     mapRef.current = map;
 
-    if (onReady) {
-      onReady(map);
+    if (onLoad) {
+      onLoad(map);
     }
   };
 
