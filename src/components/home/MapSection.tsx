@@ -9,10 +9,7 @@ import type { Coordinates } from '@/types/store';
 
 const MapSection = () => {
   const router = useRouter();
-  /**
-   * router.asPath === '/?zoom={}&lat={}&lng={}'
-   */
-
+  /* router.asPath === '/?zoom={}&lat={}&lng={}'*/
   const query = useMemo(() => new URLSearchParams(router.asPath.slice(1)), []); // eslint-disable-line react-hooks/exhaustive-deps
   const initialZoom = useMemo(
     () => (query.get('zoom') ? Number(query.get('zoom')) : INITIAL_ZOOM),
