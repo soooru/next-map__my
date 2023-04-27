@@ -1,12 +1,26 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import type { Store } from '@/types/store';
+import DetailHeader from '@/components/home/DetailHeader';
+import DetailContent from '@/components/home/DetailContent';
+import styles from '@/styles/detail.module.scss';
 
 interface Props {
   store: Store;
 }
 
 const StoreDetail: NextPage<Props> = ({ store }) => {
-  return <div>name: {store.name}</div>;
+  return (
+    <div className={(styles.detailSection, styles.expanded, styles.selected)}>
+      <DetailHeader
+        currentStore={store}
+        expanded={true}
+        onClickArrow={() => {
+          console.log('');
+        }}
+      />
+      <DetailContent currentStore={store} expanded={true} />
+    </div>
+  );
 };
 export default StoreDetail;
 
