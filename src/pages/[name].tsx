@@ -3,20 +3,30 @@ import type { Store } from '@/types/store';
 import DetailHeader from '@/components/home/DetailHeader';
 import DetailContent from '@/components/home/DetailContent';
 import styles from '@/styles/detail.module.scss';
+import { useRouter } from 'next/router';
+import useCurrentStore from '@/hooks/useCurrentStore';
 
 interface Props {
   store: Store;
 }
 
 const StoreDetail: NextPage<Props> = ({ store }) => {
+  const router = useRouter();
+  const { setCurrentStore } = useCurrentStore();
+
+  const goToMap = () => {
+    setCurrentStore(store);
+    router.push(`
+      /?zoom=15&lat=${store.coordinates[0]}&lng=${store.coordinates[1]}
+    `);
+  };
+
   return (
     <div className={(styles.detailSection, styles.expanded, styles.selected)}>
       <DetailHeader
         currentStore={store}
         expanded={true}
-        onClickArrow={() => {
-          console.log('');
-        }}
+        onClickArrow={goToMap}
       />
       <DetailContent currentStore={store} expanded={true} />
     </div>
