@@ -4,7 +4,7 @@ import DetailSection from '@/components/home/DetailSection';
 import { Store } from '@/types/store';
 import useStores from '@/hooks/useStores';
 import Header from '@/components/home/Header';
-import { relative } from 'path/posix';
+import { NextSeo } from 'next-seo';
 
 interface Props {
   stores: Store[];
@@ -19,6 +19,7 @@ export default function Home({ stores }: Props) {
 
   return (
     <Fragment>
+      <NextSeo title="전체 지도" description="전체 지도 메인 페이지" />
       <Header />
       <main
         style={{
